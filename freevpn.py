@@ -17,5 +17,39 @@ def get_password(username):
     
     return passw.strip() if passw else None
 
+def get_vpn_status():
+    html = requests.get('https://freevpn.me/').text
+    soup = BeautifulSoup(html, 'lxml')
+
+    table = soup.find_all(
+        'table', attrs={'class': "table table-striped table-bordered dataTable"})
+    # vpns = []
+    if table:
+        table = table[0]
+        tbody = table.tbody
+        trows = tbody.find_all('tr')[1:]
+        for row in trows:
+            name = None
+            loc = None
+            online = False
+            load = None
+            tcols = row.find_all('td')
+            for i, tcol in enumerate(tcols):
+                if i == 1:
+                    name = tcol.text.strip().lower()
+                elif i == 2:
+                    loc = tcol.text.strip()
+                elif i == 4:
+                    if tcol.text.strip() == TEXT_ONLINE:
+                        online = True
+                elif i == 8:
+                    load = tcol.text.strip()[:-1]
+            if name:
+                # vpns.append({'name': name, 'loc': loc,
+                #              'online': online, 'load': load})
+                yield {'name': name, 'loc': loc,
+                       'online': online, 'load': load}
+
+
 
 
