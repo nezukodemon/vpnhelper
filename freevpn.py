@@ -5,6 +5,8 @@ import argparse
 
 RE_PASS = re.compile(r'(<li><strong>Password:<\/strong>)(?P<password>[^<]+)(<\/li>)')
 
+TEXT_ONLINE = 'Online'
+VPNS = ('me', 'eu', 'se', 'im', 'it', 'be', 'co.uk')
 
 def get_password(username):
     passw = None
