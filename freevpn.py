@@ -1,5 +1,7 @@
 import re
 import requests
+from bs4 import BeautifulSoup
+
 
 
 RE_PASS = re.compile(r'(<li><strong>Password:<\/strong>)(?P<password>[^<]+)(<\/li>)')
