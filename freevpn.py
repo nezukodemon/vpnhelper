@@ -8,6 +8,15 @@ TEXT_ONLINE = 'Online'
 VPNS = ('me', 'eu', 'se', 'im', 'it', 'be', 'co.uk')
 
 def get_password(username):
+    """
+    Get the password for the vpn server.
+
+    Args:
+        username : Name of the freevpn server
+                   Example:
+                        freevpn.me
+                        freevpn.se
+    """
     passw = None
     html  = requests.get('https://'+ username + '/accounts').text
 
