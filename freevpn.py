@@ -1,6 +1,5 @@
 import re
 import requests
-import argparse
 
 
 RE_PASS = re.compile(r'(<li><strong>Password:<\/strong>)(?P<password>[^<]+)(<\/li>)')
