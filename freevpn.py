@@ -27,6 +27,15 @@ def get_password(username):
     return passw.strip() if passw else None
 
 def get_vpn_status():
+     """
+    Get the status of FreeVPN Servers
+    It scrapes the FreeVPN website for server status and details.
+
+    Return:
+        list of dict with data
+        Example dict:-
+            {'name':'freevpn.me', 'loc':'France', 'online':true, 'load':'9'}
+    """
     html = requests.get('https://freevpn.me/').text
     soup = BeautifulSoup(html, 'lxml')
 
